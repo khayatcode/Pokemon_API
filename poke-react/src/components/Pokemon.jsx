@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios';
 
 const Pokemon = () => {
     const [pokemonData, setPokemonData] = useState([])
@@ -14,16 +15,35 @@ const Pokemon = () => {
     //     fetchData()
     // }, [])
 
+    // useEffect(() => {
+    //     fetch("https://pokeapi.co/api/v2/pokemon")
+    //         .then(response => response.json())
+    //         .then(response => setPokemonData(response.results))
+    //         .catch(err => console.log(err) )
+    // }, [])
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+    //         setPokemonData(response.data.results)
+    //         console.log(response.data.results)
+    //     }
+    //     fetchData()
+    // }, [])
+
     useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon")
-            .then(response => response.json())
-            .then(response => setPokemonData(response.results))
+        axios
+            .get("https://pokeapi.co/api/v2/pokemon")
+            .then((response) => {
+                console.log(response.data.results)
+                setPokemonData(response.data.results)
+            })
             .catch(err => console.log(err) )
     }, [])
 
   return (
     <div className='container'>
-        <h1>Pokemon list</h1>
+        <h1>Axios Pokemon API lists</h1>
         <ul className='list-group'>
             {
                 pokemonData.map((pokemon) => (
