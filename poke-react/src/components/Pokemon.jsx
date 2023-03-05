@@ -33,7 +33,7 @@ const Pokemon = () => {
 
     useEffect(() => {
         axios
-            .get("https://pokeapi.co/api/v2/pokemon")
+            .get("https://pokeapi.co/api/v2/pokemon?limit=807")
             .then((response) => {
                 console.log(response.data.results)
                 setPokemonData(response.data.results)
